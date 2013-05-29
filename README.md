@@ -4,7 +4,7 @@ This is a d3.js map application of the OpenSpending Contacts around the world.
 
 Embed like this:
 
-    <iframe frameBorder="0" src="http://openspending.github.io/osmap/" width="940px" height="320px"></iframe>
+    <iframe frameBorder="0" src="http://openspending.github.io/oscontactsmap/" width="940px" height="320px"></iframe>
 
 
 ### Create topojson data

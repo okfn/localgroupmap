@@ -1,0 +1,149 @@
+body {
+  margin:0;
+  padding: 0;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+}
+
+h1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 16px;
+  background-color: #fff;
+  background-color: rgba(255,255,255, 0.5);
+  padding: 5px 10px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 14px;
+  margin: 0 5px;
+}
+
+dd {
+  margin-left: 15px;
+}
+
+#content-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 3px 0;
+  background-color: #fff;
+  background-color: rgba(255,255,255, 0.8);
+  width: 20%;
+  height: 98%;
+}
+
+#content {
+  height: 90%;
+  overflow: scroll;
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding-left: 5px;
+  list-style-type: none;
+}
+
+#content li {
+  padding-left: 4px;
+  border-bottom: 1px solid #eee;
+}
+
+#content li.cityprop:hover {
+  background-color: #74c476;
+  background-color: rgba(116,196,118, 0.3);
+
+}
+
+.background {
+  fill: #D9EDF7;
+  pointer-events: all;
+}
+
+.graticule {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: .5px;
+  stroke-opacity: .5;
+}
+
+.city {
+  fill: #333;
+  stroke: #333;
+  stroke-width: 0px;
+}
+
+
+.country {
+  fill: #fff;
+  cursor: pointer;
+}
+
+
+.zoomed .continent {
+  stroke-width: 2px;
+}
+
+.continent {
+  fill: none;
+  stroke: #41ab5d;
+  stroke-width: 5px;
+}
+
+
+.zoomed .city .dot {
+  opacity: 0.5;
+}
+
+.activecity .dot {
+  opacity: 1.0;
+  fill: #c00;
+  stroke: #c00;
+  transform: scale(3);
+}
+
+.help-dot {
+  display: none;
+  fill: none;
+  stroke: rgba(50, 50, 50, 0.5);
+  stroke-width: 0.5px;
+}
+
+.activecity .help-dot {
+  display: block;
+}
+
+.city .text {
+  display: none;
+}
+
+.active.city .text {
+  display: block;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 4px;
+  color: #444;
+}
+
+.country-boundary {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 1px;
+  stroke-linejoin: round;
+}
+
+.zoomed .country-boundary {
+  stroke-width: 0.5px;
+}
+
+.active-country {
+  fill: orange !important;
+  cursor: default;
+}
+
+.oscountry {
+  fill: #74c476;
+}
