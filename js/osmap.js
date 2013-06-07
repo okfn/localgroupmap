@@ -181,22 +181,26 @@ $(function(){
     var geo = project['ISO3'] === '' ? project['Region'] : project['Map location'];
     var status = project['Status'];
     var topic = project['Topic'];
-    var url = project['Website / Data in OpenSpending '];
+    var url = project['Website / Data in OpenSpending'];
     if (isEmpty(url)) { url = null; }
     if (url && !/^https?:\/\//.test(url)){
       url = 'http://' + url;
     }
-    var name = project['Organisation / Event '];
+    var org = project['Organisation / Event'];
+    var name = project['Name of Project'];
     if (isEmpty(name)) { name = 'N/A'; }
     var html = '<dl>';
-    var orgEvent;
+    var nameUrl;
     if (url){
-      orgEvent = '<a href="' + url + '">' + name + '</a>';
+      nameUrl = '<a href="' + url + '">' + name + '</a>';
     } else {
-      orgEvent = name;
+      nameUrl = name;
     }
+    html += '<dt>Project name</dt><dd>' + nameUrl + '</dd>';
     html += '<dt>Geographic Context</dt><dd><strong>' + geo + '</strong></dd>';
-    html += '<dt>Organisation / Event</dt><dd>' + orgEvent + '</dd>';
+    if (!isEmpty(org)){
+      html += '<dt>Organisation / Event</dt><dd>' + org + '</dd>';
+    }
     if (!isEmpty(topic)){
       html += '<dt>Topic</dt><dd>' + topic + '</dd>';
     }
