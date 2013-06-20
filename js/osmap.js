@@ -174,7 +174,7 @@ $(function(){
   };
 
   var isEmpty = function(n){
-    return (/^([\- ]*|None)$/g).test(n);
+    return n === undefined || (/^([\- ]*|None)$/g).test(n);
   };
 
   var renderProject = function(project) {
@@ -201,6 +201,15 @@ $(function(){
     if (!isEmpty(org)){
       html += '<dt>Organisation / Event</dt><dd>' + org + '</dd>';
     }
+
+    var twitter = project['Twitter handle'];
+    if (!isEmpty(twitter)) {
+      if (/^@/.test(twitter)) {
+        twitter = twitter.substr(1);
+      }
+      html += '<dt>Twitter</dt><dd><a href="https://twitter.com/' + twitter + '">@' + twitter + '</a></dd>';
+    }
+
     if (!isEmpty(topic)){
       html += '<dt>Topic</dt><dd>' + topic + '</dd>';
     }
