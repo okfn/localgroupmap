@@ -30,7 +30,7 @@ $(function(){
 
   var world, contacts, projects = {};
 
-  d3.json("countries.json", function(error, w) {
+  d3.json("countries.topojson", function(error, w) {
     world = w;
     setup();
   });

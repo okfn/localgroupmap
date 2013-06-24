@@ -12,7 +12,7 @@ Embed like this:
 Download natural earth data and then run:
 
     ogr2ogr -f GeoJSON world.json ne_50m_admin_0_countries/ne_50m_admin_0_countries.shp
-    topojson --id-property iso_a3 -p name=NAME -p name -p continent -p subregion -p pop_est -p gdp_md_est -o countries.json world.json
+    topojson --id-property iso_a3 -p name=NAME -p name -p continent -p subregion -p pop_est -p gdp_md_est -o countries.topojson world.json
 
 
 Licensed under the BSD License.
