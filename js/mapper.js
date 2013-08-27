@@ -220,7 +220,7 @@ $(function(){
       facebookurl = 'http://' + facebookurl;
     }
     if (!isEmpty(facebookurl)){  
-      facebookurl = '<a href="' + mailmanurl + '">Facebook</a>';
+      facebookurl = '<a href="' + facebookurl + '">Facebook</a>';
     }
 
     if (!isEmpty(topic)){
