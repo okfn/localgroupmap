@@ -188,11 +188,15 @@ $(function(){
     if (url && !/^https?:\/\//.test(url)){
       url = 'http://' + url;
     }
+    // Mailing list column
     var mailmanurl = project['Mailing List'];
-    if (isEmpty(mailmanurl)) { mailmanurl = null; }
-    if (mailmanurl && !/^https?:\/\//.test(url)){
-      mailmanurl = '<a href="' + Mailing List + '">' + mailmanurl + '</a>';
+    if (mailmanurl && !/^https?:\/\//.test(mailmanurl)){
+      mailmanurl = 'http://' + mailmanurl;
     }
+    if (isEmpty(mailmanurl)){  
+      mailmanurl = '<a href="' + mailmanurl + '">' + mailmanurl + '</a>';
+    }
+
     var org = project['Organisation / Event'];
     var name = project['Name of Project'];
     if (isEmpty(name)) { name = 'N/A'; }
