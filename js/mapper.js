@@ -183,6 +183,7 @@ $(function(){
     var year = project['Established since'];
     var leaders = project['Local Community Leaders'];
     var topic = project['Topic'];
+    var lgprojects = project['Unique projects'];
     var url = project['Website'];
     if (isEmpty(url)) { url = null; }
     if (url && !/^https?:\/\//.test(url)){
@@ -245,6 +246,9 @@ $(function(){
     }
     if (!isEmpty(url)){
       html += '<dt>Website</dt><dd>' + url + '</dd>';
+    }
+    if (!isEmpty(lgprojects)){
+      html += '<dt>Unique projects</dt><dd>' + lgprojects + '</dd>';
     }
     if (!isEmpty(mailmanurl)){
       html += '<dt>Mailing List</dt><dd>' + mailmanurl + '</dd>';
