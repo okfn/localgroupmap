@@ -223,6 +223,14 @@ $(function(){
       facebookurl = '<a href="' + facebookurl + '">Facebook</a>';
     }
 
+    var youtubeurl = project['Youtube channel'];
+    if (youtubeurl && !/^https?:\/\//.test(youtubeurl)){
+      youtubeurl = 'http://' + youtubeurl;
+    }
+    if (!isEmpty(youtubeurl)){  
+      youtubeurl = '<a href="' + youtubeurl + '">Watch online</a>';
+    }
+
     if (!isEmpty(topic)){
       html += '<dt>Topic</dt><dd>' + topic + '</dd>';
     }
@@ -243,6 +251,9 @@ $(function(){
     }
     if (!isEmpty(facebookurl)){
       html += '<dt>Facebook page</dt><dd>' + facebookurl + '</dd>';
+    }
+    if (!isEmpty(youtubeurl)){
+      html += '<dt>Youtube channel</dt><dd>' + youtubeurl + '</dd>';
     }
    
     html += '</dl>';
