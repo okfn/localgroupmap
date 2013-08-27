@@ -152,9 +152,9 @@ $(function(){
     }
     if (!country) {
       country = '';
-      $('#geo').text('internationally');
+      $('#geo').text('Click on a country to find out more about its Local Group.');
     } else {
-      $('#geo').text('in ' + projects[country][0]['Country']);
+      $('#geo').text('Local Group in ' + projects[country][0]['Country']);
     }
     _.each(projects[country], function(el){
       var attrs = {};
