@@ -227,7 +227,7 @@ $(function(){
       html += '<dt>Website</dt><dd>' + url + '</dd>';
     }
     if (!isEmpty(mailmanurl)){
-      html += '<dt>Mailing list</dt><dd>' + mailmanurl + '</dd>';
+      html += '<dt>Mailing List</dt><dd>' + mailmanurl + '</dd>';
     }
    
     html += '</dl>';
