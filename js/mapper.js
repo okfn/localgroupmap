@@ -194,7 +194,7 @@ $(function(){
       mailmanurl = 'http://' + mailmanurl;
     }
     if (!isEmpty(mailmanurl)){  
-      mailmanurl = '<a href="' + mailmanurl + '">' + mailmanurl + '</a>';
+      mailmanurl = '<a href="' + mailmanurl + '">Subscribe here!</a>';
     }
 
     var org = project['Organisation / Event'];
