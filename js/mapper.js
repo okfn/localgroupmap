@@ -1,6 +1,6 @@
 $(function(){
 
-  var url = "https://docs.google.com/spreadsheet/pub?key=0AqwLVP6U7FhDdEVnaUlLdnRmMnplRzdNWDF3cXBVUmc&single=true&gid=0&output=csv";
+  var url = "https://docs.google.com/spreadsheet/pub?key=0AiWM2KV46Zt0dE1xWFptQ0JsQW1YQ2ZOdGlNU0J6MkE&single=true&gid=0&output=csv";
 
   var width = $(document).width(),
       mapWidth = Math.round(width * 0.8),
