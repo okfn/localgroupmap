@@ -179,7 +179,7 @@ $(function(){
 
   var renderProject = function(project) {
     var geo = project['ISO3'] === '' ? project['Region'] : project['Map location'];
-    var status = project['Status'];
+    var status = project['Local Groups status'];
     var topic = project['Topic'];
     var url = project['Website / Data in OpenSpending'];
     if (isEmpty(url)) { url = null; }
