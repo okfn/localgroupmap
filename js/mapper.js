@@ -181,7 +181,7 @@ $(function(){
     var geo = project['ISO3'] === '' ? project['Region'] : project['Map location'];
     var status = project['Local Groups status'];
     var year = project['Established since'];
-    var leaders = project['Local Community Leaders'];
+    var leaders = project['Community Leaders'];
     var topic = project['Topic'];
     var lgprojects = project['Unique projects'];
     var url = project['Website'];
@@ -242,7 +242,7 @@ $(function(){
       html += '<dt>Status</dt><dd>' + status + '</dd>';
     }
     if (!isEmpty(leaders)){
-      html += '<dt>Local Community Leaders</dt><dd>' + leaders + '</dd>';
+      html += '<dt>Community Leaders</dt><dd>' + leaders + '</dd>';
     }
     if (!isEmpty(url)){
       html += '<dt>Website</dt><dd>' + url + '</dd>';
