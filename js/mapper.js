@@ -222,7 +222,7 @@ $(function(){
       html += '<dt>Status</dt><dd>' + status + '</dd>';
     }
     if (!isEmpty(name)){
-      html += '<dt>Local Community Leaders</dt><dd>' + status + '</dd>';
+      html += '<dt>Local Community Leaders</dt><dd>' + name + '</dd>';
     }
    
     html += '</dl>';
