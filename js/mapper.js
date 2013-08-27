@@ -193,7 +193,6 @@ $(function(){
     if (isEmpty(name)) { name = 'N/A'; }
     var html = '<dl>';
     url = '<a href="' + url + '">' + url + '</a>';
-    html += '<dt>Project name</dt><dd>' + nameUrl + '</dd>';
     html += '<dt>Geographic Context</dt><dd><strong>' + geo + '</strong></dd>';
     if (!isEmpty(org)){
       html += '<dt>Organisation / Event</dt><dd>' + org + '</dd>';
