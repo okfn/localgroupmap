@@ -192,7 +192,12 @@ $(function(){
     var name = project['Name of Project'];
     if (isEmpty(name)) { name = 'N/A'; }
     var html = '<dl>';
-    url = '<a href="' + url + '">' + url + '</a>';
+    var nameUrl;
+    if (url){
+      nameUrl = '<a href="' + url + '">' + name + '</a>';
+    } else {
+      nameUrl = name;
+    }
     html += '<dt>Project name</dt><dd>' + nameUrl + '</dd>';
     html += '<dt>Geographic Context</dt><dd><strong>' + geo + '</strong></dd>';
     if (!isEmpty(org)){
@@ -218,9 +223,6 @@ $(function(){
     }
     if (!isEmpty(leaders)){
       html += '<dt>Local Community Leaders</dt><dd>' + leaders + '</dd>';
-    }
-    if (!isEmpty(url)){
-      html += '<dt>Website</dt><dd>' + url + '</dd>';
     }
    
     html += '</dl>';
