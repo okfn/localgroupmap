@@ -193,7 +193,7 @@ $(function(){
     if (mailmanurl && !/^https?:\/\//.test(mailmanurl)){
       mailmanurl = 'http://' + mailmanurl;
     }
-    if (isEmpty(mailmanurl)){  
+    if (!isEmpty(mailmanurl)){  
       mailmanurl = '<a href="' + mailmanurl + '">' + mailmanurl + '</a>';
     }
 
