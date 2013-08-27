@@ -181,7 +181,7 @@ $(function(){
     var geo = project['ISO3'] === '' ? project['Region'] : project['Map location'];
     var status = project['Local Groups status'];
     var year = project['Established since'];
-    var name = project['Local Community Leaders'];
+    var leaders = project['Local Community Leaders'];
     var topic = project['Topic'];
     var url = project['Website / Data in OpenSpending'];
     if (isEmpty(url)) { url = null; }
@@ -221,8 +221,8 @@ $(function(){
     if (!isEmpty(status)){
       html += '<dt>Status</dt><dd>' + status + '</dd>';
     }
-    if (!isEmpty(name)){
-      html += '<dt>Local Community Leaders</dt><dd>' + name + '</dd>';
+    if (!isEmpty(leaders)){
+      html += '<dt>Local Community Leaders</dt><dd>' + leaders + '</dd>';
     }
    
     html += '</dl>';
