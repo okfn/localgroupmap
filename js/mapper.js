@@ -215,6 +215,14 @@ $(function(){
       html += '<dt>Twitter</dt><dd><a href="https://twitter.com/' + twitter + '">@' + twitter + '</a></dd>';
     }
 
+    var facebookurl = project['Facebook page'];
+    if (facebookurl && !/^https?:\/\//.test(facebookurl)){
+      facebookurl = 'http://' + facebookurl;
+    }
+    if (!isEmpty(facebookurl)){  
+      facebookurl = '<a href="' + mailmanurl + '">Facebook</a>';
+    }
+
     if (!isEmpty(topic)){
       html += '<dt>Topic</dt><dd>' + topic + '</dd>';
     }
@@ -232,6 +240,9 @@ $(function(){
     }
     if (!isEmpty(mailmanurl)){
       html += '<dt>Mailing List</dt><dd>' + mailmanurl + '</dd>';
+    }
+    if (!isEmpty(facebookurl)){
+      html += '<dt>Facebook page</dt><dd>' + facebookurl + '</dd>';
     }
    
     html += '</dl>';
