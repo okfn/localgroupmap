@@ -189,9 +189,9 @@ $(function(){
       url = 'http://' + url;
     }
     var mailmanurl = project['Mailing List'];
-    if (isEmpty(mailmanurl)) { url = null; }
-    if (url && !/^https?:\/\//.test(url)){
-      url = 'http://' + url;
+    if (isEmpty(mailmanurl)) { mailmanurl = null; }
+    if (mailmanurl && !/^https?:\/\//.test(url)){
+      mailmanurl = '<a href="' + Mailing List + '">' + mailmanurl + '</a>';
     }
     var org = project['Organisation / Event'];
     var name = project['Name of Project'];
