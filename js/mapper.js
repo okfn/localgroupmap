@@ -188,6 +188,11 @@ $(function(){
     if (url && !/^https?:\/\//.test(url)){
       url = 'http://' + url;
     }
+    var mailmanurl = project['Mailing List'];
+    if (isEmpty(mailmanurl)) { url = null; }
+    if (url && !/^https?:\/\//.test(url)){
+      url = 'http://' + url;
+    }
     var org = project['Organisation / Event'];
     var name = project['Name of Project'];
     if (isEmpty(name)) { name = 'N/A'; }
@@ -220,6 +225,9 @@ $(function(){
     }
     if (!isEmpty(url)){
       html += '<dt>Website</dt><dd>' + url + '</dd>';
+    }
+    if (!isEmpty(mailmanurl)){
+      html += '<dt>Mailing list</dt><dd>' + mailmanurl + '</dd>';
     }
    
     html += '</dl>';
