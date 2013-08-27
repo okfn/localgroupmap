@@ -183,7 +183,7 @@ $(function(){
     var year = project['Established since'];
     var leaders = project['Local Community Leaders'];
     var topic = project['Topic'];
-    var url = project['Website / Data in OpenSpending'];
+    var url = project['Website'];
     if (isEmpty(url)) { url = null; }
     if (url && !/^https?:\/\//.test(url)){
       url = 'http://' + url;
