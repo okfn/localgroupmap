@@ -38,7 +38,7 @@ dd {
 
 #content {
   height: 90%;
-  overflow: scroll;
+  overflow: auto;
   margin: 0;
   padding: 0;
 }
