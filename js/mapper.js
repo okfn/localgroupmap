@@ -28,7 +28,7 @@ $(function(){
   var path = d3.geo.path()
       .projection(projection);
 
-  var world, contacts, projects = {};
+  var world, contacts, projects = {}, topics = [], topicPrefix = 'Topic: ';
 
   d3.json("countries.topojson", function(error, w) {
     world = w;
@@ -75,6 +75,15 @@ $(function(){
       projects[d.ISO3] = projects[d.ISO3] || [];
       projects[d.ISO3].push(d);
       if (d.ISO3 === '') { return; }
+
+      if (topics.length === 0) {
+        for (var key in projects[d.ISO3][0]) {
+          if (key.indexOf(topicPrefix) === 0) {
+            topics.push(key);
+          }
+        }
+      }
+
       svg.selectAll('.' + d.ISO3).classed('oscountry', true);
       if (d['Geo coordinates']) {
         var latlng = d['Geo coordinates'].split(',');
@@ -90,6 +99,31 @@ $(function(){
           .attr('r', 4);
       }
     });
+
+    $topic = $('#topic');
+
+    _.each(topics, function(d, i){
+      var topicName = d.substring(topicPrefix.length)
+      $topic.append($('<option>', {value: topicName}).text(topicName));
+    });
+
+    $topic.change(function(e){
+      var selection = $topic.val();
+      svg.selectAll('.country').classed('active-country', false);
+      if (selection !== '') {
+        _.each(projects, function(d, i){
+          var countryCode = i;
+          _.each(d, function(localGroup, j){
+            for (var k in localGroup) {
+              if (k.substring(topicPrefix.length) === selection && localGroup[k] === 'Y') {
+                svg.selectAll('.' + countryCode).classed('active-country', true);
+              }
+            }
+          });
+        });
+      }
+    });
+
     fillInContent();
   };
 
@@ -102,11 +136,9 @@ $(function(){
 
     if (d && centered !== d) {
       var bounds = path.bounds(d);
-      console.log(bounds);
       var countryHeight = Math.abs(bounds[0][1] - bounds[1][1]);
       var countryWidth = Math.abs(bounds[0][0] - bounds[1][0]);
       var maxDim = Math.max(countryWidth, countryHeight);
-      console.log(maxDim);
       var centroid = path.centroid(d);
       x = centroid[0];
       y = centroid[1];
@@ -151,9 +183,12 @@ $(function(){
       return;
     }
     if (!country) {
-      country = '';
-      $('#geo').text('Click on a country to find out more about its Local Group.');
+      $('#intro').show();
+      $('#country-info').hide();
+      $('#topic').trigger('change');
     } else {
+      $('#intro').hide();
+      $('#country-info').show();
       $('#geo').text('Local Group in ' + projects[country][0]['Country']);
     }
     _.each(projects[country], function(el){
@@ -165,7 +200,6 @@ $(function(){
       content.append($('<li>', attrs).html(renderProject(el)));
     });
     content.on('mouseover', 'li.cityprop', function(){
-      console.log('mouseover', $(this).data('city'));
       svg.selectAll('.city-' + $(this).data('city')).classed('activecity', true);
     });
     content.on('mouseout', 'li.cityprop', function(){
@@ -182,7 +216,6 @@ $(function(){
     var status = project['Local Groups status'];
     var year = project['Established since'];
     var leaders = project['Community Leaders'];
-    var topic = project['Topic'];
     var lgprojects = project['Unique projects'];
     var url = project['Website'];
     if (isEmpty(url)) { url = null; }
@@ -194,7 +227,7 @@ $(function(){
     if (mailmanurl && !/^https?:\/\//.test(mailmanurl)){
       mailmanurl = 'http://' + mailmanurl;
     }
-    if (!isEmpty(mailmanurl)){  
+    if (!isEmpty(mailmanurl)){
       mailmanurl = '<a href="' + mailmanurl + '">Subscribe here!</a>';
     }
 
@@ -220,7 +253,7 @@ $(function(){
     if (facebookurl && !/^https?:\/\//.test(facebookurl)){
       facebookurl = 'http://' + facebookurl;
     }
-    if (!isEmpty(facebookurl)){  
+    if (!isEmpty(facebookurl)){
       facebookurl = '<a href="' + facebookurl + '">Facebook</a>';
     }
 
@@ -228,13 +261,10 @@ $(function(){
     if (youtubeurl && !/^https?:\/\//.test(youtubeurl)){
       youtubeurl = 'http://' + youtubeurl;
     }
-    if (!isEmpty(youtubeurl)){  
+    if (!isEmpty(youtubeurl)){
       youtubeurl = '<a href="' + youtubeurl + '">Watch online</a>';
     }
 
-    if (!isEmpty(topic)){
-      html += '<dt>Topic</dt><dd>' + topic + '</dd>';
-    }
     if (!isEmpty(year)){
       html += '<dt>Established since</dt><dd>' + year + '</dd>';
     }
@@ -259,7 +289,15 @@ $(function(){
     if (!isEmpty(youtubeurl)){
       html += '<dt>Youtube channel</dt><dd>' + youtubeurl + '</dd>';
     }
-   
+
+    topicHtml = '<ul>';
+    for (var i = 0; i < topics.length; i += 1) {
+      if (project[topics[i]] === 'Y') {
+        topicHtml += '<li>' + topics[i].substr(topicPrefix.length) + '</li>';
+      }
+    }
+    topicHtml += '</ul>';
+    html += '<dt>Topics</dt><dd>' + topicHtml + '</dd>';
     html += '</dl>';
     return html;
   };

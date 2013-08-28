@@ -8,7 +8,18 @@
 <body>
   <h1>Open Knowledge Foundation Local Groups around the world!</h1>
   <div id="content-container">
-    <h2 id="geo">Local Group in this area</h2>
+    <div id="intro">
+      <h2>Click on a country to find out more about its Local Group.</h2>
+      <label>
+        Filter by topic:
+        <select id="topic">
+          <option value="">---</option>
+        </select>
+      </label>
+    </div>
+    <div id="country-info" style="display:none">
+      <h2 id="geo"></h2>
+    </div>
     <ul id="content">
     </ul>
   </div>
