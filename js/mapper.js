@@ -2,9 +2,9 @@ $(function(){
 
   var url = "https://docs.google.com/spreadsheet/pub?key=0AiWM2KV46Zt0dE1xWFptQ0JsQW1YQ2ZOdGlNU0J6MkE&single=true&gid=0&output=csv";
 
-  var width = $(document).width(),
+  var width = $(window).width(),
       mapWidth = Math.round(width * 0.8),
-      height = $(document).height() - 10,
+      height = $(window).height() - 10,
       centered;
 
   var rootsvg = d3.select("#svg").append("svg")

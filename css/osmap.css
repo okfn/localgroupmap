@@ -34,11 +34,10 @@ dd {
   background-color: rgba(255,255,255, 0.8);
   width: 20%;
   height: 98%;
+  overflow: auto;
 }
 
 #content {
-  height: 90%;
-  overflow: auto;
   margin: 0;
   padding: 0;
 }
