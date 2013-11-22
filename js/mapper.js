@@ -228,14 +228,14 @@ $(function(){
       mailmanurl = 'http://' + mailmanurl;
     }
     if (!isEmpty(mailmanurl)){
-      mailmanurl = '<a href="' + mailmanurl + '">Subscribe here!</a>';
+      mailmanurl = '<a target="_blank" href="' + mailmanurl + '">Subscribe here!</a>';
     }
 
     var org = project['Organisation / Event'];
     var name = project['Name of Project'];
     if (isEmpty(name)) { name = 'N/A'; }
     var html = '<dl>';
-    url = '<a href="' + url + '">' + url + '</a>';
+    url = '<a target="_blank" href="' + url + '">' + url + '</a>';
     html += '<dt>Geographic Context</dt><dd><strong>' + geo + '</strong></dd>';
     if (!isEmpty(org)){
       html += '<dt>Organisation / Event</dt><dd>' + org + '</dd>';
@@ -246,7 +246,7 @@ $(function(){
       if (/^@/.test(twitter)) {
         twitter = twitter.substr(1);
       }
-      html += '<dt>Twitter</dt><dd><a href="https://twitter.com/' + twitter + '">@' + twitter + '</a></dd>';
+      html += '<dt>Twitter</dt><dd><a target="_blank" href="https://twitter.com/' + twitter + '">@' + twitter + '</a></dd>';
     }
 
     var facebookurl = project['Facebook page'];
@@ -254,7 +254,7 @@ $(function(){
       facebookurl = 'http://' + facebookurl;
     }
     if (!isEmpty(facebookurl)){
-      facebookurl = '<a href="' + facebookurl + '">Facebook</a>';
+      facebookurl = '<a target="_blank" href="' + facebookurl + '">Facebook</a>';
     }
 
     var youtubeurl = project['Youtube channel'];
@@ -262,7 +262,7 @@ $(function(){
       youtubeurl = 'http://' + youtubeurl;
     }
     if (!isEmpty(youtubeurl)){
-      youtubeurl = '<a href="' + youtubeurl + '">Watch online</a>';
+      youtubeurl = '<a target="_blank" href="' + youtubeurl + '">Watch online</a>';
     }
 
     if (!isEmpty(year)){
