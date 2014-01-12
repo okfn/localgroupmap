@@ -1,7 +1,6 @@
 $(function(){
 
-  var url = "https://docs.google.com/spreadsheet/pub?key=0AiWM2KV46Zt0dE1xWFptQ0JsQW1YQ2ZOdGlNU0J6MkE&single=true&gid=0&output=csv";
-
+  
   var width = $(window).width(),
       mapWidth = Math.round(width * 0.8),
       height = $(window).height() - 10,
@@ -40,7 +39,7 @@ $(function(){
     setup();
   });
 
-  $.get("./infowindow.html", function(t) {
+  $.get(templateURL, function(t) {
     template = t;
     setup();
   })
