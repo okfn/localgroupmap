@@ -1,0 +1,28 @@
+<dl>
+	<h2 id="geo">Local Group in {{Country}}</h2>
+	{{#Map location}}
+	<dt>Geographic Context</dt><dd><strong>{{Map location}}</strong></dd>
+	{{/Map location}}
+	<dt>Status</dt><dd>{{Local Groups status}}</dd>
+	<dt>Community Leaders</dt><dd>{{Community Leaders}}</dd>
+	<dt>Website</dt><dd><a target="_blank" href="{{Website}}">{{Website}}</a></dd>
+	<dt>Mailing List</dt><dd><a target="_blank" href="{{Mailing List}}">Subscribe here!</a></dd>
+	{{#Twitter handle}}
+	<dt>Twitter</dt><dd><a target="_blank" href="https://twitter.com/{{Twitter handle}}">@{{Twitter handle}}</a></dd>
+	{{/Twitter handle}}
+	{{#Facebook page}}
+	<dt>Facebook</dt><dd><a target="_blank" href="{{Facebook page}}">Facebook page</a></dd>
+	{{/Facebook page}}
+
+	{{#Youtube channel}}
+	<dt>Youtube</dt><dd><a target="_blank" href="{{https://youtube.com/user/{{Youtube channel}}">{{Youtube channel}}</a></dd>
+	{{/Youtube channel}}
+
+	<dt>Topics</dt><dd>
+		<ul>
+			{{#topics}}
+			<li>{{name}}</li>
+			{{/topics}}
+		</ul>
+	</dd>
+</dl>

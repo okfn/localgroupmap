@@ -28,7 +28,7 @@ $(function(){
   var path = d3.geo.path()
       .projection(projection);
 
-  var world, contacts, projects = {}, topics = [], topicPrefix = 'Topic: ';
+  var world, contacts, template, projects = {}, topics = [], topicPrefix = 'Topic: ';
 
   d3.json("countries.topojson", function(error, w) {
     world = w;
@@ -40,13 +40,18 @@ $(function(){
     setup();
   });
 
+  $.get("./infowindow.html", function(t) {
+    template = t;
+    setup();
+  })
+
   var munge = function(str){
     return str.toLowerCase().replace(/\W/g, '-');
   };
 
 
   var setup = function() {
-    if (!(world && contacts)) { return; }
+    if (!(world && contacts && template)) { return; }
 
     svg.selectAll('.country')
         .data(topojson.feature(world, world.objects.world).features)
@@ -184,12 +189,12 @@ $(function(){
     }
     if (!country) {
       $('#intro').show();
-      $('#country-info').hide();
+     // $('#country-info').hide();
       $('#topic').trigger('change');
     } else {
       $('#intro').hide();
-      $('#country-info').show();
-      $('#geo').text('Local Group in ' + projects[country][0]['Country']);
+      //$('#country-info').show();
+      //$('#geo').text('Local Group in ' + projects[country][0]['Country']);
     }
     _.each(projects[country], function(el){
       var attrs = {};
@@ -212,94 +217,18 @@ $(function(){
   };
 
   var renderProject = function(project) {
-    var geo = project['ISO3'] === '' ? project['Region'] : project['Map location'];
-    var status = project['Local Groups status'];
-    var year = project['Established since'];
-    var leaders = project['Community Leaders'];
-    var lgprojects = project['Unique projects'];
-    var url = project['Website'];
-    if (isEmpty(url)) { url = null; }
-    if (url && !/^https?:\/\//.test(url)){
-      url = 'http://' + url;
-    }
-    // Mailing list column
-    var mailmanurl = project['Mailing List'];
-    if (mailmanurl && !/^https?:\/\//.test(mailmanurl)){
-      mailmanurl = 'http://' + mailmanurl;
-    }
-    if (!isEmpty(mailmanurl)){
-      mailmanurl = '<a target="_blank" href="' + mailmanurl + '">Subscribe here!</a>';
-    }
-
-    var org = project['Organisation / Event'];
-    var name = project['Name of Project'];
-    if (isEmpty(name)) { name = 'N/A'; }
-    var html = '<dl>';
-    url = '<a target="_blank" href="' + url + '">' + url + '</a>';
-    html += '<dt>Geographic Context</dt><dd><strong>' + geo + '</strong></dd>';
-    if (!isEmpty(org)){
-      html += '<dt>Organisation / Event</dt><dd>' + org + '</dd>';
-    }
-
-    var twitter = project['Twitter handle'];
-    if (!isEmpty(twitter)) {
-      if (/^@/.test(twitter)) {
-        twitter = twitter.substr(1);
-      }
-      html += '<dt>Twitter</dt><dd><a target="_blank" href="https://twitter.com/' + twitter + '">@' + twitter + '</a></dd>';
-    }
-
-    var facebookurl = project['Facebook page'];
-    if (facebookurl && !/^https?:\/\//.test(facebookurl)){
-      facebookurl = 'http://' + facebookurl;
-    }
-    if (!isEmpty(facebookurl)){
-      facebookurl = '<a target="_blank" href="' + facebookurl + '">Facebook</a>';
-    }
-
-    var youtubeurl = project['Youtube channel'];
-    if (youtubeurl && !/^https?:\/\//.test(youtubeurl)){
-      youtubeurl = 'http://' + youtubeurl;
-    }
-    if (!isEmpty(youtubeurl)){
-      youtubeurl = '<a target="_blank" href="' + youtubeurl + '">Watch online</a>';
-    }
-
-    if (!isEmpty(year)){
-      html += '<dt>Established since</dt><dd>' + year + '</dd>';
-    }
-    if (!isEmpty(status)){
-      html += '<dt>Status</dt><dd>' + status + '</dd>';
-    }
-    if (!isEmpty(leaders)){
-      html += '<dt>Community Leaders</dt><dd>' + leaders + '</dd>';
-    }
-    if (!isEmpty(url)){
-      html += '<dt>Website</dt><dd>' + url + '</dd>';
-    }
-    if (!isEmpty(lgprojects)){
-      html += '<dt>Unique projects</dt><dd>' + lgprojects + '</dd>';
-    }
-    if (!isEmpty(mailmanurl)){
-      html += '<dt>Mailing List</dt><dd>' + mailmanurl + '</dd>';
-    }
-    if (!isEmpty(facebookurl)){
-      html += '<dt>Facebook page</dt><dd>' + facebookurl + '</dd>';
-    }
-    if (!isEmpty(youtubeurl)){
-      html += '<dt>Youtube channel</dt><dd>' + youtubeurl + '</dd>';
-    }
-
-    topicHtml = '<ul>';
+    var topicList=[]
     for (var i = 0; i < topics.length; i += 1) {
       if (project[topics[i]] === 'Y') {
-        topicHtml += '<li>' + topics[i].substr(topicPrefix.length) + '</li>';
+        topicList.push({"name":topics[i].substr(topicPrefix.length)});
       }
     }
-    topicHtml += '</ul>';
-    html += '<dt>Topics</dt><dd>' + topicHtml + '</dd>';
-    html += '</dl>';
-    return html;
+    
+
+    console.log(topicList);
+    project.topics=topicList;
+    return Mustache.render(template,project);
+    //return html;
   };
 
 });
